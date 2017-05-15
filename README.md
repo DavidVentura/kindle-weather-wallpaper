@@ -7,7 +7,9 @@ config.json:
 {
 	"units": "metric",
     "cnt": 1,
-    "id": YOUR-CITY-ID,
+    "id": "YOUR-CITY-ID",
     "appid": "YOUR-APP-ID"
 }
 ```
+
+![](/generation/tmp.png)
