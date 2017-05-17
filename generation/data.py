@@ -55,10 +55,16 @@ def render_image(data):
         with Image(width=758, height=1024, background=Color('#fff')) as img:
             img.type = 'grayscale'
             img.format = 'png'
-            img.alpha_channel = 'remove'
+
+            try:
+                img.alpha_channel = 'remove'
+            except TypeError:
+                img.alpha_channel = False
+
             img.depth = 8
             draw.font_size = 40
             draw.text_alignment = 'center'
+            draw.font = "./DejaVuSans.ttf"
             # city, desc, dt
             # temp: morn, eve, night - max, min, day
             y = 100
