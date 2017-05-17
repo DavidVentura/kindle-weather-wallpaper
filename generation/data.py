@@ -9,6 +9,14 @@ from wand.display import display
 from wand.drawing import Drawing
 from wand.image import Image
 
+icons = {
+        'drizzle': 'drizzle.png',
+        'rain': 'rain.png',
+        'storm': 'storm.png',
+        'clear': 'clear.png',
+        'error': 'error.png'
+}
+
 
 def do_request(payload):
     endpoint = "http://api.openweathermap.org/data/2.5/forecast/daily"
@@ -35,6 +43,13 @@ def parse_data(data):
     return info
 
 
+def desc_to_icon(desc):
+    for key in icons:
+        if key in desc.lower():
+            return icons[key]
+    return icons['error']
+
+
 def render_image(data):
     with Drawing() as draw:
         with Image(width=758, height=1024, background=Color('#fff')) as img:
@@ -51,7 +66,8 @@ def render_image(data):
 
             # Img
             y += 30
-            with Image(filename='./icons/rain.png') as icon:
+            filename = './icons/%s' % desc_to_icon(data['desc'])
+            with Image(filename=filename) as icon:
                 icon.resize(200, 200)
                 img.composite(icon, left=img.width//2-icon.width//2, top=y)
             y += 250
@@ -77,11 +93,12 @@ def render_image(data):
 
 
 def main():
-    data = mock_request()
+    # data = mock_request()
     payload = json.loads(open('config.json').read())
-    # data = do_request(payload)
+    data = do_request(payload)
     d = parse_data(data)
     render_image(d)
+
 
 if __name__ == '__main__':
     main()
