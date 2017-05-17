@@ -11,7 +11,7 @@ config.json:
 
 ```json
 {
-	"units": "metric",
+    "units": "metric",
     "cnt": 1,
     "id": "YOUR-CITY-ID",
     "appid": "YOUR-APP-ID"
