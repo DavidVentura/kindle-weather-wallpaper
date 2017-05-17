@@ -1,5 +1,11 @@
 # kindle-weather-wallpaper
 
+requirements:
+
+```
+python3-wand python3-requests
+```
+
 config.json:
 
 
