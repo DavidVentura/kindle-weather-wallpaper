@@ -87,9 +87,9 @@ def render_image(data):
 
             y += 30
             tmp = data['temp']
-            draw.text(img.width // 6 * 1, y, str(int(tmp['morn'])) + '°')
-            draw.text(img.width // 6 * 3, y, str(int(['eve'])) + '°')
-            draw.text(img.width // 6 * 5, y, str(int(['night'])) + '°')
+            draw.text(img.width // 6 * 1, y, "%d°" % int(tmp['morn']))
+            draw.text(img.width // 6 * 3, y, "%d°" % int(tmp['eve']))
+            draw.text(img.width // 6 * 5, y, "%d°" % int(tmp['night']))
 
             draw.text(img.width // 2, img.height - 20, data['city'])
 
