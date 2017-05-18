@@ -10,11 +10,13 @@ from wand.drawing import Drawing
 from wand.image import Image
 
 icons = {
-        'drizzle': 'drizzle.png',
-        'rain': 'rain.png',
-        'storm': 'storm.png',
-        'clear': 'clear.png',
-        'error': 'error.png'
+        'drizzle': 'drizzle.svg',
+        'rain': 'rain.svg',
+        'storm': 'storm.svg',
+        'clear': 'clear.svg',
+        'wind': 'wind.svg',
+        'cloud': 'cloud.svg',
+        'error': 'error.svg'
 }
 
 
@@ -54,7 +56,7 @@ def render_image(data):
     with Drawing() as draw:
         with Image(width=758, height=1024, background=Color('#fff')) as img:
             img.type = 'grayscale'
-            img.format = 'png'
+            img.format = 'svg'
 
             try:
                 img.alpha_channel = 'remove'
@@ -73,7 +75,7 @@ def render_image(data):
             # Img
             y += 30
             filename = './icons/%s' % desc_to_icon(data['desc'])
-            with Image(filename=filename) as icon:
+            with Image(filename=filename, resolution=200) as icon:
                 icon.resize(200, 200)
                 img.composite(icon, left=img.width//2-icon.width//2, top=y)
             y += 250
