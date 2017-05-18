@@ -39,6 +39,7 @@ def parse_data(data):
     info = {}
     d = time.localtime(day['dt'])
     info['city'] = city
+    info['day'] = time.strftime('%A', d)
     info['dt'] = time.strftime('%d/%m/%Y', d)
     info['temp'] = day['temp']
     info['desc'] = day['weather'][0]['description']
@@ -70,7 +71,12 @@ def render_image(data):
             # city, desc, dt
             # temp: morn, eve, night - max, min, day
             y = 100
+            draw.font_size = 35
             draw.text(img.width // 2, y, data['dt'])
+
+            draw.font_size = 40
+            y += 40
+            draw.text(img.width // 2, y, data['day'])
 
             # Img
             y += 30
@@ -102,9 +108,9 @@ def render_image(data):
 
 
 def main():
-    # data = mock_request()
+    data = mock_request()
     payload = json.loads(open('config.json').read())
-    data = do_request(payload)
+    # data = do_request(payload)
     d = parse_data(data)
     render_image(d)
 
