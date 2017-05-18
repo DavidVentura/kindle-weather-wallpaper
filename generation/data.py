@@ -10,13 +10,13 @@ from wand.drawing import Drawing
 from wand.image import Image
 
 icons = {
-        'drizzle': 'drizzle.svg',
-        'rain': 'rain.svg',
-        'storm': 'storm.svg',
-        'clear': 'clear.svg',
-        'wind': 'wind.svg',
-        'cloud': 'cloud.svg',
-        'error': 'error.svg'
+        'drizzle': 'drizzle.png',
+        'rain': 'rain.png',
+        'storm': 'storm.png',
+        'clear': 'clear.png',
+        'wind': 'wind.png',
+        'cloud': 'cloud.png',
+        'error': 'error.png'
 }
 
 
@@ -57,7 +57,7 @@ def render_image(data):
     with Drawing() as draw:
         with Image(width=758, height=1024, background=Color('#fff')) as img:
             img.type = 'grayscale'
-            img.format = 'svg'
+            img.format = 'png'
 
             try:
                 img.alpha_channel = 'remove'
